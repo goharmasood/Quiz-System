@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Door Types Page</title>
+    <title>Door Type Page</title>
     @vite('resources/css/app.css')
 </head>
 <body>
