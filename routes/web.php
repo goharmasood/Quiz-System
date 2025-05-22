@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DoorTypeController;
+use App\Http\Controllers\InventoryTypeController;
+use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
     return view('login');
@@ -13,7 +14,10 @@ Route::view("login", "login");
 
 Route::post("login", [AuthController::class, 'login']);
 Route::get("dashboard", [DashboardController::class, 'dashboard']);
-Route::get("doortypes", [DoorTypeController::class, 'getDoorTypes']);
+Route::get("inventorytype", [InventoryTypeController::class, 'getInventoryTypes']);
 Route::get("logout", [AuthController::class, 'logout']);
-Route::post("adddoortype", [DoorTypeController::class, 'addDoorType']);
+Route::post("addinventorytype", [InventoryTypeController::class, 'addInventoryType']);
+Route::get("inventorytype/delete/{id}", [InventoryTypeController::class, 'deleteInventoryType']);
+Route::get("inventories", [InventoryController::class, 'getInventories']);
+Route::post("addinventory", [InventoryController::class, 'addInventory']);
 

@@ -5,8 +5,8 @@
         </div>
         <div class="space-x-4">
             <a class="text-gray-700 hover:text-blue-500" href="/dashboard">Dashboard</a>
-            <a class="text-gray-700 hover:text-blue-500" href="/doortypes">Door Types</a>
-            <a class="text-gray-700 hover:text-blue-500" href="/stock">Stock</a>
+            <a class="text-gray-700 hover:text-blue-500" href="/inventorytype">Inventory Type</a>
+            <a class="text-gray-700 hover:text-blue-500" href="/inventories">Inventory</a>
             <a class="text-gray-700 hover:text-blue-500" href="">Welcome {{$name}}</a>
             <a class="text-gray-700 hover:text-blue-500" href="/logout">Logout</a>
         </div>
