@@ -13,11 +13,11 @@
     <div class=" bg-green-800 text-white pl-5">{{session('inventory')}}</div>
     @endif
     <!-- Centered Form Container -->
-    <div class="flex-grow flex items-center justify-center px-4">
+    <div class="flex-grow flex flex-col items-center justify-start px-4 space-y-10 py-10 mt-8">
         <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
             <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Add Inventory</h2>
             
-            <form action="/addinventory" method="POST" class="space-y-4">
+            <form action="/addinventory" method="post" class="space-y-4">
                 @csrf
 
                 <!-- Inventory Name -->
@@ -84,9 +84,9 @@
                 <ul class="flex justify-between">
                     <li class="w-30">S. No</li>
                     <li class="w-70">Name</li>
-                    <li class="w-70">Length</li>
-                    <li class="w-70">Width</li>
-                    <li class="w-70">Actual Price</li>
+                    <li class="w-30">Length</li>
+                    <li class="w-30">Width</li>
+                    <li class="w-30">Actual Price</li>
                     <li class="w-30">Sell Price</li>
                      <li class="w-30">Discount Price</li>
                      <li class="w-30">Total Stock</li>
@@ -97,16 +97,20 @@
                 <ul class="flex justify-between">
                     <li class="w-30">{{$inventorieslist->id}}</li>
                     <li class="w-70">{{$inventorieslist->name}}</li>
-                    <li class="w-70">{{$inventorieslist->length}}</li>
+                    <li class="w-30">{{$inventorieslist->length}}</li>
                     <li class="w-30">{{$inventorieslist->width}}</li>
-                    <li class="w-70">{{$inventorieslist->actual_price}}</li>
-                    <li class="w-70">{{$inventorieslist->sell_price}}</li>
-                    <li class="w-70">{{$inventorieslist->discount_price}}</li>
-                    <li class="w-70">{{$inventorieslist->total_stock}}</li>
+                    <li class="w-30">{{$inventorieslist->actual_price}}</li>
+                    <li class="w-30">{{$inventorieslist->sell_price}}</li>
+                    <li class="w-30">{{$inventorieslist->discount_price}}</li>
+                    <li class="w-30">{{$inventorieslist->total_stock}}</li>
                   </ul>
             </li>
             @endforeach
         </ul>
+        <!-- Pagination links -->
+<div class="mt-4">
+    {{ $inventories->links() }}
+</div>
     </div>
     </div>
 </body>

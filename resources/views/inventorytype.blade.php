@@ -58,6 +58,10 @@
             </li>
             @endforeach
         </ul>
+                <!-- Pagination links -->
+<div class="mt-4">
+    {{ $inventorytypes->links() }}
+</div>
     </div>
 </div>
 </body>

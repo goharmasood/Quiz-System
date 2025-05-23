@@ -10,7 +10,7 @@ class InventoryTypeController extends Controller
 {
     //
       function getInventoryTypes(){
-        $inventoryTypes = InventoryType::where('is_active', 1)->get();
+        $inventoryTypes = InventoryType::where('is_active', 1)->paginate(5);;
         $admin = Session::get('admin');
         //return $admin;
         if($admin){
