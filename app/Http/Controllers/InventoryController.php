@@ -31,7 +31,7 @@ class InventoryController extends Controller
     }
 
     $inventoryTypes = InventoryType::where('is_active', 1)->get();
-    $inventories = Inventory::where('is_active', 1)->get();
+    $inventories = Inventory::where('is_active', 1)->paginate(2);
 
     return view('inventories', [
         'name' => $admin->name,
@@ -44,7 +44,9 @@ class InventoryController extends Controller
 
 
 public function addInventory(StoreInventoryRequest $request)
+
 {
+    //dd($request->all());
     $inventory = Inventory::create([
         'name'           => $request->inventory,
         'type_id'        => $request->inventorytype,
@@ -58,7 +60,7 @@ public function addInventory(StoreInventoryRequest $request)
     ]);
 
     Session::flash('inventory', "Inventory '{$inventory->name}' added successfully.");
-    return redirect('addinventory');
+    return redirect('inventories');
 }
 
 }

@@ -25,11 +25,11 @@ class StoreInventoryRequest extends FormRequest
                 Rule::unique('inventories', 'name')->where(fn ($query) => $query->where('is_active', 1)),
             ],
             'inventorytype'   => ['required', 'exists:inventory_types,id'],
-            'length'          => ['nullable', 'numeric', 'gt:0'],
-            'width'           => ['nullable', 'numeric', 'gt:0'],
+            'length' => ['required', 'numeric', 'gt:0'],
+            'width' => ['required', 'numeric', 'gt:0'],
             'actual_price'    => ['required', 'numeric', 'gt:0'],
             'sell_price'      => ['required', 'numeric', 'gt:0'],
-            'discount_price'  => ['nullable', 'numeric', 'gte:0'],
+            'discount_price'  => ['required', 'numeric', 'gt:0'],
             'total_stock'     => ['required', 'integer', 'gt:0'],
         ];
     }
