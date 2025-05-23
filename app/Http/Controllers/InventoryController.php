@@ -31,7 +31,7 @@ class InventoryController extends Controller
     }
 
     $inventoryTypes = InventoryType::where('is_active', 1)->get();
-    $inventories = Inventory::where('is_active', 1)->paginate(2);
+    $inventories = Inventory::where('is_active', 1)->paginate(5);
 
     return view('inventories', [
         'name' => $admin->name,
@@ -46,21 +46,38 @@ class InventoryController extends Controller
 public function addInventory(StoreInventoryRequest $request)
 
 {
-    //dd($request->all());
-    $inventory = Inventory::create([
-        'name'           => $request->inventory,
-        'type_id'        => $request->inventorytype,
-        'length'      => $request->length,
-        'width'       => $request->width,
-        'actual_price'   => $request->actual_price,
-        'sell_price'     => $request->sell_price,
-        'discount_price' => $request->discount_price,
-        'total_stock'    => $request->total_stock,
-        'is_active'      => 1,
-    ]);
+    //dd($request->all()); // Dump and die means print posted data && kill Process
+    // $inventory = Inventory::create([
+    //     'name'           => $request->inventory,
+    //     'type_id'        => $request->inventorytype,
+    //     'length'      => $request->length,
+    //     'width'       => $request->width,
+    //     'actual_price'   => $request->actual_price,
+    //     'sell_price'     => $request->sell_price,
+    //     'discount_price' => $request->discount_price,
+    //     'total_stock'    => $request->total_stock,
+    //     'is_active'      => 1,
+    // ]);
 
-    Session::flash('inventory', "Inventory '{$inventory->name}' added successfully.");
+    // Session::flash('inventory', "Inventory '{$inventory->name}' added successfully.");
+    // return redirect('inventories');
+
+    $inventory = new Inventory();
+    $inventory->name = $request->inventory;
+    $inventory->type_id = $request->inventorytype;
+    $inventory->length = $request->length;
+    $inventory->width = $request->width;
+    $inventory->actual_price = $request->actual_price;
+    $inventory->sell_price = $request->sell_price;
+    $inventory->discount_price = $request->discount_price;
+    $inventory->total_stock = $request->total_stock;
+    $inventory->is_active = 1;
+    
+    if($inventory->save()){ 
+        Session::flash('inventory', "Inventory '{$inventory->name}' added successfully.");
+    }
     return redirect('inventories');
+
 }
 
 }

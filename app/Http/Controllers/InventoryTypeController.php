@@ -10,7 +10,7 @@ class InventoryTypeController extends Controller
 {
     //
       function getInventoryTypes(){
-        $inventoryTypes = InventoryType::where('is_active', 1)->paginate(5);;
+        $inventoryTypes = InventoryType::where('is_active', 1)->paginate(5);
         $admin = Session::get('admin');
         //return $admin;
         if($admin){
@@ -26,18 +26,18 @@ class InventoryTypeController extends Controller
           
 
          $admin = session::get('admin');
-          // $inventoryTypes = InventoryType::create([
-        // 'name' => $request->doortype,
+        //   $inventoryTypes = InventoryType::create([
+        // 'name' => $request->inventorytype,
         // 'is_active' => true,
         // 'added_by' => $admin->name ?? 'system',
         //     ]);
-        //    Session::flash('doortype', "Door Type '{$doorType->name}' added successfully.");
-        //     return redirect('doortypes');
+        //    Session::flash('inventorytype', "Inventory Type ". "$inventoryTypes->name". " Added");
+        //     return redirect('inventorytype');
           $inventoryTypes = new InventoryType();
           $inventoryTypes->name = $request->inventorytype;
           $inventoryTypes->is_active = true;
           $inventoryTypes->added_by = $admin->name ?? 'system';
-          $inventoryTypes->save();
+          
           if($inventoryTypes->save()){ 
           Session::flash('inventorytype', "Inventory Type ". "$inventoryTypes->name". " Added");
          }

@@ -84,6 +84,7 @@
                 <ul class="flex justify-between">
                     <li class="w-30">S. No</li>
                     <li class="w-70">Name</li>
+                    <li class="w-30">Inventory Type</li>
                     <li class="w-30">Length</li>
                     <li class="w-30">Width</li>
                     <li class="w-30">Actual Price</li>
@@ -97,6 +98,7 @@
                 <ul class="flex justify-between">
                     <li class="w-30">{{$inventorieslist->id}}</li>
                     <li class="w-70">{{$inventorieslist->name}}</li>
+                    <li class="w-30">{{$inventorieslist->type_id}}</li>
                     <li class="w-30">{{$inventorieslist->length}}</li>
                     <li class="w-30">{{$inventorieslist->width}}</li>
                     <li class="w-30">{{$inventorieslist->actual_price}}</li>
