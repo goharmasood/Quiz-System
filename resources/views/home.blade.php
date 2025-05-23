@@ -1,1 +1,1 @@
-<h1>Welcome to Home Page {{$name}}</h1>
+<h1>Home Page {{$name}}</h1>
