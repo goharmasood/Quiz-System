@@ -27,7 +27,7 @@ class StoreInventoryTypeRequest extends FormRequest
                 'required',
                 'string',
                 'min:3',
-                Rule::unique('inventory_types', 'name')->where(fn ($query) => $query->where('is_active', 1)),
+                Rule::unique('inventory_types', 'name')->where(fn ($query) => $query->where('is_active', 1))->ignore($this->route('id')),
             ],
         ];
     }
