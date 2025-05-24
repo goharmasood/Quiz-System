@@ -58,12 +58,6 @@
                 @error('sell_price')
                 <div class="text-red-500" >{{$message}}</div>
                 @enderror
-                <!-- Discount Price -->
-                <input type="number" step="0.01" name="discount_price" placeholder="Discount Price"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring focus:ring-blue-200">
-                @error('discount_price')
-                <div class="text-red-500" >{{$message}}</div>
-                @enderror
                 <!-- Total Stock -->
                 <input type="number" name="total_stock" placeholder="Total Stock"
                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring focus:ring-blue-200">
@@ -80,7 +74,7 @@
         <div class="w-200">
         <h1 class="text-2xl text-blue-500">Inventory List</h1>
         <ul class="border border-gray-200">
-        <li class="p-2 font-bold">
+            <li class="p-2 font-bold">
                 <ul class="flex justify-between">
                     <li class="w-30">S. No</li>
                     <li class="w-70">Name</li>
@@ -89,7 +83,6 @@
                     <li class="w-30">Width</li>
                     <li class="w-30">Actual Price</li>
                     <li class="w-30">Sell Price</li>
-                     <li class="w-30">Discount Price</li>
                      <li class="w-30">Total Stock</li>
                 </ul>
             </li>
@@ -98,12 +91,11 @@
                 <ul class="flex justify-between">
                     <li class="w-30">{{$inventorieslist->id}}</li>
                     <li class="w-70">{{$inventorieslist->name}}</li>
-                    <li class="w-30">{{$inventorieslist->type_id}}</li>
-                    <li class="w-30">{{$inventorieslist->length}}</li>
-                    <li class="w-30">{{$inventorieslist->width}}</li>
-                    <li class="w-30">{{$inventorieslist->actual_price}}</li>
-                    <li class="w-30">{{$inventorieslist->sell_price}}</li>
-                    <li class="w-30">{{$inventorieslist->discount_price}}</li>
+                    <li class="w-30">{{$inventorieslist->InventoryType->name}}</li>
+                    <li class="w-30">{{ $inventorieslist->length_in_feet }}</li>
+                    <li class="w-30">{{ $inventorieslist->width_in_feet }}</li>
+                    <li class="w-30">{{ $inventorieslist->actual_price_formatted }}</li>
+                    <li class="w-30">{{ $inventorieslist->sell_price_formatted }}</li>
                     <li class="w-30">{{$inventorieslist->total_stock}}</li>
                   </ul>
             </li>

@@ -22,25 +22,48 @@ class InventoryController extends Controller
         }
         }
 
-    function getInventories(){
+    public function getInventories(){
       
-       $admin = Session::get('admin');
+        $admin = Session::get('admin');
     
-    if (!$admin) {
-        return redirect('login');
+        if (!$admin) {
+            return redirect('login');
+        }
+
+        $inventoryTypes = InventoryType::where('is_active', 1)->get();
+        $inventories = Inventory::where('is_active', 1)->paginate(5);
+
+        return view('inventories', [
+            'name' => $admin->name,
+            'inventorytypes' => $inventoryTypes,
+            'inventories' => $inventories
+        ]);
+
+        //return view('inventories');
     }
 
-    $inventoryTypes = InventoryType::where('is_active', 1)->get();
-    $inventories = Inventory::where('is_active', 1)->paginate(5);
-
-    return view('inventories', [
-        'name' => $admin->name,
-        'inventorytypes' => $inventoryTypes,
-        'inventories' => $inventories
-    ]);
-
-        return view('inventories');
+    public function getInventoriesDetails(){
+      
+        $admin = Session::get('admin');
+    
+        if (!$admin) {
+            return redirect('login');
         }
+
+        $inventoryTypes = InventoryType::where('is_active', 1)->get();
+
+        $inventories = Inventory::with('InventoryType')
+        ->where('is_active', 1)
+        ->paginate(5);
+
+        return view('inventories', [
+            'name' => $admin->name,
+            'inventorytypes' => $inventoryTypes,
+            'inventories' => $inventories
+        ]);
+
+        //return view('inventories');
+    }
 
 
 public function addInventory(StoreInventoryRequest $request)
@@ -54,7 +77,6 @@ public function addInventory(StoreInventoryRequest $request)
     //     'width'       => $request->width,
     //     'actual_price'   => $request->actual_price,
     //     'sell_price'     => $request->sell_price,
-    //     'discount_price' => $request->discount_price,
     //     'total_stock'    => $request->total_stock,
     //     'is_active'      => 1,
     // ]);
@@ -69,7 +91,6 @@ public function addInventory(StoreInventoryRequest $request)
     $inventory->width = $request->width;
     $inventory->actual_price = $request->actual_price;
     $inventory->sell_price = $request->sell_price;
-    $inventory->discount_price = $request->discount_price;
     $inventory->total_stock = $request->total_stock;
     $inventory->is_active = 1;
     

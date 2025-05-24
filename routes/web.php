@@ -18,6 +18,6 @@ Route::get("inventorytype", [InventoryTypeController::class, 'getInventoryTypes'
 Route::get("logout", [AuthController::class, 'logout']);
 Route::post("addinventorytype", [InventoryTypeController::class, 'addInventoryType']);
 Route::get("inventorytype/delete/{id}", [InventoryTypeController::class, 'deleteInventoryType']);
-Route::get("inventories", [InventoryController::class, 'getInventories']);
+Route::get("inventories", [InventoryController::class, 'getInventoriesDetails']);
 Route::post("addinventory", [InventoryController::class, 'addInventory']);
 

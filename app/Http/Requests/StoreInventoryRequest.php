@@ -34,7 +34,6 @@ class StoreInventoryRequest extends FormRequest
             'width' => ['required', 'numeric', 'gt:0'],
             'actual_price'    => ['required', 'numeric', 'gt:0'],
             'sell_price'      => ['required', 'numeric', 'gt:0'],
-            'discount_price'  => ['required', 'numeric', 'gte:0'],
             'total_stock'     => ['required', 'integer', 'gt:0'],
         ];
     }
@@ -44,6 +43,12 @@ class StoreInventoryRequest extends FormRequest
         return [
             'inventory.unique' => 'This inventory name already exists for an active inventory.',
             'inventory.required' => 'Inventory name is required.',
+            'inventorytype.required' => 'Inventory type is required.',
+            'length.required' => 'Length is required.',
+            'width.required' => 'Width is required.',
+            'actual_price.required' => 'Actual price is required.',
+            'sell_price.required' => 'Sell price is required.',
+            'total_stock.required' => 'Total stock is required.',
             // Customize other messages as needed
         ];
     }
@@ -53,10 +58,6 @@ class StoreInventoryRequest extends FormRequest
         $validator->after(function ($validator) {
             if ($this->sell_price < $this->actual_price) {
                 $validator->errors()->add('sell_price', 'The sell price must be greater than or equal to the actual price.');
-            }
-            // Check discount_price is between actual_price and sell_price
-            if ($this->discount_price < $this->actual_price || $this->discount_price > $this->sell_price) {
-                $validator->errors()->add('discount_price', 'The discount price must be between the actual price and the sell price.');
             }
         });
     }
